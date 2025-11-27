@@ -13,8 +13,8 @@ else
   exit 1
 end
 
-append_cflags "-I#{VACMAN_CONTROLLER}/include -fcommon -Wall -std=c99 -Wno-declaration-after-statement"
-append_ldflags "-L#{VACMAN_CONTROLLER}/lib -laal2sdk -Wl,-rpath #{VACMAN_CONTROLLER}/lib"
+append_cflags %W[-I#{VACMAN_CONTROLLER}/include -fcommon -Wall -Wno-declaration-after-statement -Wno-incompatible-pointer-types]
+append_ldflags ["-L#{VACMAN_CONTROLLER}/lib", '-laal2sdk', "-Wl,-rpath #{VACMAN_CONTROLLER}/lib"]
 
 if find_library('aal2sdk', 'AAL2DPXInit', "#{VACMAN_CONTROLLER}/lib")
   create_makefile('vacman_controller/vacman_low_level')
